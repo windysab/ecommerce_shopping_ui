@@ -180,7 +180,7 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                                         badgeContent: Text(
                                           '${state.items.length}',
                                           style: const TextStyle(
-                                              color: Color(0xffEE4D2D)),
+                                              color: Colors.black),
                                         ),
                                         // badgeColor: Colors.white,
                                         child: InkWell(
