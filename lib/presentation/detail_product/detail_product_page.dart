@@ -124,7 +124,7 @@ class _DetailProductPAgeState extends State<DetailProductPAge> {
                           );
                         }
                         return Text(
-                          '6',
+                          'dfhdkj',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
