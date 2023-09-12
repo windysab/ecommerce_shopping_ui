@@ -2,6 +2,7 @@ import 'package:ecommerce_shopping_ui/common/custom_button.dart';
 import 'package:ecommerce_shopping_ui/common/custom_textfield.dart';
 import 'package:ecommerce_shopping_ui/presentation/auth/signup_screen.dart';
 import 'package:ecommerce_shopping_ui/screens/home_screen.dart';
+import 'package:ecommerce_shopping_ui/screens/home_screen1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -109,16 +110,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (state is LoginLoaded) {
                             await AuthLocalDatasource()
                                 .saveAuthData(state.model);
+                            // ignore: use_build_context_synchronously
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const HomeScreen();
+                                  return const Home_Screen1();
                                 },
                               ),
                             );
                           }
                           if (state is LoginError) {
+                            // ignore: use_build_context_synchronously
                             showDialog(
                                 context: context,
                                 builder: (context) {

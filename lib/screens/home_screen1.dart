@@ -23,7 +23,7 @@ class Home_Screen1 extends StatelessWidget {
         //   ),
         // ],
         child: AppBar(
-          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
           elevation: 0,
           title: Row(
             children: [
