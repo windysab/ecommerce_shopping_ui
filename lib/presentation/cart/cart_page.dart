@@ -29,7 +29,10 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     Text(
                       'Total: Rp. $total',
-                      style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: ),
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
                     // if (uniquiItem > 0)
                     //   ElevatedButton(
