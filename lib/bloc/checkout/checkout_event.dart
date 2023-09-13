@@ -16,3 +16,10 @@ class RemoveFromCartEvent extends CheckoutEvent {
     required this.product,
   });
 }
+
+class DeleteFromCartEvent extends CheckoutEvent {
+  final Product product;
+  DeleteFromCartEvent({
+    required this.product,
+  });
+}

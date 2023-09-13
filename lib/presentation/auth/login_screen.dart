@@ -10,6 +10,7 @@ import '../../bloc/login/login_bloc.dart';
 import '../../common/custom_textfield_pass.dart';
 import '../../data/datasources/auth_local_datasource.dart';
 import '../../data/models/login_request_model.dart';
+import '../../pages/navigation_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,14 +20,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
 
-  // final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -49,19 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _signInFormKey,
                   child: Column(
                     children: [
-                      // TextFormField(
-                      //   controller: _emailController,
-                      //   decoration: const InputDecoration(
-                      //     hintText: "Enter Email",
-                      //     labelText: "Email",
-                      //     border: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.all(
-                      //         Radius.circular(20),
-                      //       ),
-                      //     ),
-                      //     prefixIcon: Icon(Icons.email),
-                      //   ),
-                      // ),
                       CustomTextField(
                         controller: _emailController,
                         hintText: "Enter Email",
@@ -71,31 +57,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      // TextFormField(
-                      //   controller: _passwordController,
-                      //   decoration: InputDecoration(
-                      //     hintText: "Enter Password",
-                      //     labelText: "Password",
-                      //     border: const OutlineInputBorder(
-                      //       borderRadius: BorderRadius.all(
-                      //         Radius.circular(20),
-                      //       ),
-                      //     ),
-                      //     prefixIcon: const Icon(Icons.lock),
-                      //     suffixIcon: IconButton(
-                      //       icon: Icon(obscureText
-                      //           ? Icons.visibility_off
-                      //           : Icons.visibility),
-                      //       onPressed: () {
-                      //         setState(() {
-                      //           obscureText = !obscureText;
-                      //         });
-                      //       },
-                      //     ),
-                      //   ),
-                      //   obscureText: obscureText,
-                      // ),
-
                       CustomTextFieldPass(
                         controller: _passwordController,
                         hintText: "Enter Password",
@@ -110,12 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (state is LoginLoaded) {
                             await AuthLocalDatasource()
                                 .saveAuthData(state.model);
+
                             // ignore: use_build_context_synchronously
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const Home_Screen1();
+                                  return const NavigationScreen();
                                 },
                               ),
                             );
@@ -148,19 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: CircularProgressIndicator(),
                             );
                           }
-                          // return CustomButton(
-                          //     text: "Login",
-                          //     onTap: () {
-                          //       if (_signInFormKey.currentState!.validate()) {
-                          //         final model = LoginRequestModel(
-                          //           identifier: _emailController.text,
-                          //           password: _passwordController.text,
-                          //         );
-                          //         context
-                          //             .read<LoginBloc>()
-                          //             .add(DoLoginEvent(model: model));
-                          //       }
-                          //     });
+
                           return ElevatedButton(
                               onPressed: () {
                                 setState(() {
@@ -190,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ));
                         },
                       ),
-                    ], // <--- added this
+                    ],
                   ),
                 ),
               ),
@@ -229,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                ], // <--- this
+                ],
               ),
               const SizedBox(
                 height: 5,
