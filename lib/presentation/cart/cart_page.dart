@@ -29,21 +29,21 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     Text(
                       'Total: Rp. $total',
-                      style: const TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: ),
                     ),
-                    if (uniquiItem > 0)
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.pinkAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          shadowColor: Colors.white,
-                        ),
-                        child: const Text('Checkout',
-                            style: TextStyle(color: Colors.white)),
-                      ),
+                    // if (uniquiItem > 0)
+                    //   ElevatedButton(
+                    //     onPressed: () {},
+                    //     style: ElevatedButton.styleFrom(
+                    //       backgroundColor: Colors.pinkAccent,
+                    //       shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(20),
+                    //       ),
+                    //       shadowColor: Colors.white,
+                    //     ),
+                    //     child: const Text('Checkout',
+                    //         style: TextStyle(color: Colors.white)),
+                    //   ),
                   ],
                 );
               }
@@ -66,7 +66,7 @@ class _CartPageState extends State<CartPage> {
                 return Column(
                   children: [
                     Card(
-                      color: count > 1 ? Colors.pink : Colors.pink[100],
+                      color: count > 1 ? Colors.pink[50] : Colors.pink[100],
                       child: ListTile(
                         leading: Card(
                           borderOnForeground: true,
@@ -111,6 +111,7 @@ class _CartPageState extends State<CartPage> {
                         },
                       ),
                     ),
+                    const SizedBox(height: 10),
                     uniquiItem > 1 && index < uniquiItem - 1
                         ? const Divider(
                             height: 1,
@@ -118,18 +119,24 @@ class _CartPageState extends State<CartPage> {
                             indent: 20,
                             endIndent: 20,
                           )
-                        : Container(
-                            child: Column(
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    context.read<CheckoutBloc>().add(
-                                        RemoveFromCartEvent(product: item));
-                                  },
-                                  child: const Text('Remove'),
-                                ),
-                              ],
-                            ),
+                        : Column(
+                            children: [
+                              Text(
+                                'Total: Rp. ${state.items.fold(0, (sum, item) => sum + item.attributes!.price!)}',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  context
+                                      .read<CheckoutBloc>()
+                                      .add(RemoveFromCartEvent(product: item));
+                                },
+                                child: const Text('Remove'),
+                              ),
+                            ],
                           ),
                   ],
                 );
