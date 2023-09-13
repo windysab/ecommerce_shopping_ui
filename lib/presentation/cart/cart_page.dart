@@ -28,23 +28,34 @@ class _CartPageState extends State<CartPage> {
                   final item = dataSet.elementAt(index);
                   final count =
                       state.items.where((element) => element == item).length;
-                  return ListTile(
-                    // image: Image.network(
-                    //     '${dataSet.elementAt(index).attributes!.image!}'),
-                    title:
-                        Text('${dataSet.elementAt(index).attributes!.name!}'),
-                    subtitle: Text(
-                        'Price: \$${dataSet.elementAt(index).attributes!.price!}'),
-                    trailing: Text('Qty: $count'),
+                  return Card(
+                    color: count > 2 ? Colors.pink : Colors.pink[100],
+                    child: ListTile(
+                      // image: Image.network(
+                      //     '${dataSet.elementAt(index).attributes!.image!}'),
+                      leading: Card(
+                          borderOnForeground: true,
+                          elevation: 2,
+                          // shadowColor: count > 2 ? Colors.blue : Colors.red,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              side: const BorderSide(color: Colors.black)),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: Image.network('${item.attributes!.image}')),
+                      title: Text(dataSet.elementAt(index).attributes!.name!),
+                      subtitle: Text(
+                          'Harga: Rp. ${dataSet.elementAt(index).attributes!.price!}'),
+                      trailing: Text('Jumlah: $count'),
+                    ),
                   );
                 },
               );
             }
             return ListView(children: const [
               ListTile(
-                title: Text('Product 1'),
-                subtitle: Text('Price: \$100'),
-                trailing: Text('Qty: 1'),
+                title: Text('Product 0'),
+                subtitle: Text('Price: \$0'),
+                trailing: Text('Qty: 0'),
               ),
             ]);
           },

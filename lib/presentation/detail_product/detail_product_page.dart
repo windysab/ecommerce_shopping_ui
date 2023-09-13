@@ -63,7 +63,7 @@ class _DetailProductPAgeState extends State<DetailProductPAge> {
                   ),
                 ),
                 Text(
-                  '\Rp. ${widget.product.attributes!.price!}',
+                  'Rp. ${widget.product.attributes!.price!}',
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -123,8 +123,8 @@ class _DetailProductPAgeState extends State<DetailProductPAge> {
                             ),
                           );
                         }
-                        return Text(
-                          'dfhdkj',
+                        return const Text(
+                          '0',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -176,9 +176,9 @@ class _DetailProductPAgeState extends State<DetailProductPAge> {
                               if (state is CheckoutLoading) {
                                 return const CircularProgressIndicator();
                               }
-                              return Text(
+                              return const Text(
                                 'Beli Sekarang',
-                                style: const TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.white),
                               );
                             },
                           ),
