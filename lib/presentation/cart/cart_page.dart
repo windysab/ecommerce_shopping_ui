@@ -31,7 +31,7 @@ class _CartPageState extends State<CartPage> {
                       'Total: Rp. $total',
                       style: const TextStyle(color: Colors.black),
                     ),
-                    if (uniquiItem > 2)
+                    if (uniquiItem > 0)
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -66,7 +66,7 @@ class _CartPageState extends State<CartPage> {
                 return Column(
                   children: [
                     Card(
-                      color: count > 2 ? Colors.pink : Colors.pink[100],
+                      color: count > 1 ? Colors.pink : Colors.pink[100],
                       child: ListTile(
                         leading: Card(
                           borderOnForeground: true,
@@ -111,21 +111,26 @@ class _CartPageState extends State<CartPage> {
                         },
                       ),
                     ),
-                    if (count > 1)
-                    
-                      Column(
-                        children: [
-                          Text('Total: Rp. ${item.attributes!.price! * count}'),
-                          ElevatedButton(
-                            onPressed: () {
-                              context
-                                  .read<CheckoutBloc>()
-                                  .add(DeleteFromCartEvent(product: item));
-                            },
-                            child: const Text('Hapus'),
+                    uniquiItem > 1 && index < uniquiItem - 1
+                        ? const Divider(
+                            height: 1,
+                            thickness: 1,
+                            indent: 20,
+                            endIndent: 20,
+                          )
+                        : Container(
+                            child: Column(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    context.read<CheckoutBloc>().add(
+                                        RemoveFromCartEvent(product: item));
+                                  },
+                                  child: const Text('Remove'),
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
                   ],
                 );
               },
