@@ -7,6 +7,8 @@ import 'package:ecommerce_shopping_ui/screens/home_screen1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../presentation/cart/cart_page.dart';
+
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
 
@@ -19,7 +21,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   List<Widget> pages = [
     const Home_Screen1(),
-    const CartScreen(),
+    const CartPage(),
     const ProfileScreen(),
     const SettingScreen(),
 

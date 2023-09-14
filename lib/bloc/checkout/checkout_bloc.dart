@@ -1,7 +1,5 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 import '../../data/models/respons/list_product_response_model.dart';
 
@@ -23,5 +21,13 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       emit(CheckoutLoading());
       emit(CheckoutLoaded(items: currentState.items));
     });
+    on<DeleteFromCartEvent>((event, emit) {
+      final currentState = state as CheckoutLoaded;
+      currentState.items.remove(event.product);
+      emit(CheckoutLoading());
+      emit(CheckoutLoaded(items: currentState.items));
+    });
+
+    
   }
 }
