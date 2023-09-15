@@ -1,7 +1,11 @@
+import 'package:ecommerce_shopping_ui/presentation/checkout/checkout_page.dart';
+import 'package:ecommerce_shopping_ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/checkout/checkout_bloc.dart';
+import '../../data/datasources/auth_local_datasource.dart';
+import '../../pages/navigation_screen.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -18,11 +22,10 @@ class _CartPageState extends State<CartPage> {
         forceMaterialTransparency: true,
         title: const Text(
           'Cart',
-          textAlign: TextAlign.center ,
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-
           ),
         ),
         // actions: [
@@ -157,11 +160,27 @@ class _CartPageState extends State<CartPage> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     ElevatedButton(
-                                      onPressed: () {
-                                        context.read<CheckoutBloc>().add(
-                                            RemoveFromCartEvent(product: item));
+                                      onPressed: () async {
+                                        final isLogin =
+                                            await AuthLocalDatasource()
+                                                .isLogin();
+                                        if (isLogin) {
+                                          // ignore: use_build_context_synchronously
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return const CheckoutPage();
+                                          }));
+                                        } else {
+                                          // ignore: use_build_context_synchronously
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return const NavigationScreen();
+                                          }));
+                                        }
                                       },
-                                      child: const Text('Remove'),
+                                      child: const Text('Checkout Now'),
                                     ),
                                   ],
                                 ),

@@ -163,7 +163,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: TextStyle(fontSize: 15, color: Colors.black),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         child: const Text(
                           "Login",
                           style: TextStyle(fontSize: 15, color: Colors.black),
