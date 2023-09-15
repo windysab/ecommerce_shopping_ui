@@ -22,6 +22,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Alamat Pengiriman'),
             const SizedBox(
@@ -30,15 +31,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
             TextField(
               controller: addressController,
               maxLines: 4,
-              style: const TextStyle(fontSize: 14),
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Alamat Pengiriman',
-              ),
+                  labelText: '', border: OutlineInputBorder()),
             ),
             const SizedBox(
               height: 8,
             ),
+            const Text('Item Product'),
             BlocBuilder<CheckoutBloc, CheckoutState>(
               builder: (context, state) {
                 if (state is CheckoutLoaded) {
