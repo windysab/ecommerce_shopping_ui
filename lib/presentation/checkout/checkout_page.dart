@@ -31,13 +31,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
             TextField(
               controller: addressController,
               maxLines: 4,
+              style: const TextStyle(fontSize: 14),
               decoration: const InputDecoration(
-                  labelText: '', border: OutlineInputBorder()),
+                labelText: '',
+                border: OutlineInputBorder(),
+                hintText: 'Alamat Pengiriman',
+              ),
             ),
             const SizedBox(
               height: 8,
             ),
-            const Text('Item Product'),
             BlocBuilder<CheckoutBloc, CheckoutState>(
               builder: (context, state) {
                 if (state is CheckoutLoaded) {

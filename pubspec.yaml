@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animated_bottom_navigation_bar: ^1.2.0
+  awesome_dialog: ^3.1.0
   badges: ^3.1.2
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
@@ -41,6 +42,7 @@ dependencies:
   http: ^1.1.0
   introduction_screen: ^3.1.11
   shared_preferences: ^2.2.1
+  webview_flutter: ^4.2.4
 
 dev_dependencies:
   build_runner: ^2.4.6
