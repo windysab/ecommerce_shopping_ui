@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/register/register_bloc.dart';
+import '../../data/datasources/auth_local_datasource.dart';
+import '../../data/models/register_request_model.dart';
+import '../../pages/navigation_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -8,6 +14,10 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final _signUpFormKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   bool obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -85,20 +95,59 @@ class _SignupScreenState extends State<SignupScreen> {
                     const SizedBox(
                       height: 30,
                     ),
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(55),
-                          backgroundColor: Colors.pinkAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                    BlocConsumer<RegisterBloc, RegisterState>(
+                        builder: (context, state) {
+                      return ElevatedButton(
+                          onPressed: () {
+                            if (_signUpFormKey.currentState!.validate()) {
+                              final requestModel = RegisterRequestModel(
+                                name: _nameController.text,
+                                password: _passwordController.text,
+                                email: _emailController.text,
+                                username: _nameController.text,
+                              );
+
+                              context
+                                  .read<RegisterBloc>()
+                                  .add(RegisterEvent.register(requestModel));
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(55),
+                            backgroundColor: Colors.pinkAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            shadowColor: Colors.white,
                           ),
-                          shadowColor: Colors.white,
-                        ),
-                        child: const Text(
-                          "Create Account",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                        )),
+                          child: const Text(
+                            "Create Account",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ));
+                    }, listener: (context, state) {
+                      state.maybeWhen(
+                        orElse: () {},
+                        error: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Register Error'),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        },
+                        loaded: (model) async {
+                          await AuthLocalDatasource().saveAuthData(model);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const NavigationScreen();
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    }),
                   ], // <--- added this
                 ),
               ),

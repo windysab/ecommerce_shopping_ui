@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 import '../../data/datasources/product_remote_datasource.dart';
 import '../../data/models/respons/list_product_response_model.dart';

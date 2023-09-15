@@ -9,6 +9,7 @@ import 'bloc/checkout/checkout_bloc.dart';
 import 'bloc/get_products/get_products_bloc.dart';
 import 'bloc/login/login_bloc.dart';
 
+import 'bloc/register/register_bloc.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CheckoutBloc(),
+        ),
+        BlocProvider(
+          create: (context) => RegisterBloc(AuthRemoteDatasource()),
         ),
       ],
       child: MaterialApp(
