@@ -59,6 +59,12 @@ android {
         }
     }
 }
+android {
+   ndkVersion "25.1.8937393"
+  defaultConfig {
+    minSdkVersion 19
+  }
+}
 
 flutter {
     source '../..'
