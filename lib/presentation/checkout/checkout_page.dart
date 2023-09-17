@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/checkout/checkout_bloc.dart';
 import '../../bloc/order/order_bloc.dart';
+import '../../common/snap_widget.dart';
 import '../../data/datasources/auth_local_datasource.dart';
 import '../../data/models/order_request_model.dart';
 
@@ -93,9 +94,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
             state.maybeWhen(
               orElse: () {},
               loaded: (model) {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return SnapWidget(url: model.redirectUrl);
-                // }));
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SnapWidget(url: model.redirectUrl);
+                }));
               },
             );
           },
