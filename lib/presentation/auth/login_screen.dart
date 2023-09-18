@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:ecommerce_shopping_ui/common/custom_button.dart';
 import 'package:ecommerce_shopping_ui/common/custom_textfield.dart';
 import 'package:ecommerce_shopping_ui/presentation/auth/signup_screen.dart';
@@ -84,24 +85,35 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                           if (state is LoginError) {
                             // ignore: use_build_context_synchronously
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Text('Login Gagal'),
-                                    content: const Text(
-                                        'Login gagal, check data anda'),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text('OK',
-                                              style: TextStyle(
-                                                  color: Colors.black)))
-                                    ],
-                                  );
-                                });
+                            // showDialog(
+                            //     context: context,
+                            //     builder: (context) {
+                            //       return AlertDialog(
+                            //         title: const Text('Login Gagal'),
+                            //         content: const Text(
+                            //             'Login gagal, check data anda'),
+                            //         actions: [
+                            //           TextButton(
+                            //               onPressed: () {
+                            //                 Navigator.pop(context);
+                            //               },
+                            //               child: const Text('OK',
+                            //                   style: TextStyle(
+                            //                       color: Colors.black)))
+                            //         ],
+                            //       );
+                            //     });
+                            // ignore: use_build_context_synchronously
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.ERROR,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: 'Login Gagal',
+                              desc: 'Login gagal, check data anda',
+                              btnOkOnPress: () {
+                                Navigator.pop(context);
+                              },
+                            ).show();
                           }
                         },
                         builder: (context, state) {

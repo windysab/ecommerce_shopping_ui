@@ -1,12 +1,42 @@
 // import 'package:ecommerce_shopping_ui/presentation/home/widgets/list_product_widget.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:badges/badges.dart' as badges;
 
+import '../bloc/checkout/checkout_bloc.dart';
+import '../common/global_variables.dart';
+import '../pages/navigation_screen.dart';
+import '../pages/profil_screen.dart';
+import '../pages/setting_screen.dart';
+import '../presentation/cart/cart_page.dart';
 import '../presentation/home/widgets/banner_widget.dart';
 import '../presentation/home/widgets/list_category_widget.dart';
 import '../presentation/home/widgets/list_product_widget.dart';
 
-class Home_Screen1 extends StatelessWidget {
+class Home_Screen1 extends StatefulWidget {
   const Home_Screen1({super.key});
+
+  @override
+  State<Home_Screen1> createState() => _Home_Screen1State();
+}
+
+class _Home_Screen1State extends State<Home_Screen1> {
+  // final int _page = 0;
+  // double bottomBarWidth = 42;
+  // double bottomBarBorderWidth = 5;
+  // int PageIndex = 0;
+  final int _page = 0;
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  // List<Widget> pages = [
+  //   const Home_Screen1(),
+  //   const CartPage(),
+  //   const ProfileScreen(),
+  //   const SettingScreen(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +58,6 @@ class Home_Screen1 extends StatelessWidget {
           backgroundColor: Colors.white,
           // lanjutkan kode nya
 
-          
           title: Row(
             children: [
               Material(
@@ -81,7 +110,6 @@ class Home_Screen1 extends StatelessWidget {
           ),
         ),
       ),
-
       body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -109,9 +137,74 @@ class Home_Screen1 extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          Expanded(child: ListProductWidget())
+          Expanded(child: ListProductWidget()),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     final CurvedNavigationBarState? navBarState =
+          //         _bottomNavigationKey.currentState;
+          //     navBarState?.setPage(1);
+          //   },
+          //   child: const Text('Go to Navigation Screen'),
+          // ),
+          // NavigationScreen(),
         ],
       ),
+      // bottomNavigationBar: CurvedNavigationBar(
+      //   // index: pages.indexOf(pages.first),
+      //   key: _bottomNavigationKey,
+      //   backgroundColor: Colors.white,
+      //   color: Colors.pink,
+      //   buttonBackgroundColor: Colors.pink,
+      //   height: 70,
+      //   items: const <Widget>[
+      //     Icon(
+      //       Icons.home,
+      //       size: 30,
+      //       color: Colors.white,
+      //     ),
+      //     Icon(Icons.shopping_cart, size: 30, color: Colors.white),
+      //     Icon(Icons.person, size: 30, color: Colors.white),
+      //     Icon(Icons.settings, size: 30, color: Colors.white),
+      //   ],
+      //   animationDuration: const Duration(milliseconds: 200),
+      //   animationCurve: Curves.bounceInOut,
+      //   onTap: (index) {
+      //     print('index ke $index');
+      //     setState(() {
+      //       _page = index;
+      //     });
+      //   },
+      // ),
+
+      // floatingActionButton: SafeArea(
+      //   child: FloatingActionButton(
+      //     onPressed: () {},
+      //     backgroundColor: Colors.pink,
+      //     child: const Icon(
+      //       Icons.qr_code_scanner,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // bottomNavigationBar: AnimatedBottomNavigationBar(
+      //   icons: const [
+      //     CupertinoIcons.home,
+      //     CupertinoIcons.shopping_cart,
+      //     CupertinoIcons.person,
+      //     CupertinoIcons.settings,
+      //   ],
+      //   inactiveColor: Colors.black.withOpacity(0.5),
+      //   activeColor: Colors.pink,
+      //   activeIndex: PageIndex,
+      //   gapLocation: GapLocation.center,
+      //   notchSmoothness: NotchSmoothness.softEdge,
+      //   leftCornerRadius: 10,
+      //   rightCornerRadius: 10,
+      //   iconSize: 35,
+      //   elevation: 0,
+      //   onTap: (index) => setState(() => PageIndex = index),
+      // )
 
       // body: SafeArea(
       //   child: Padding(
