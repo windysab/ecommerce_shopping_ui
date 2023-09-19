@@ -16,10 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _screens = [
-      const Home_Screen1(),
-      const Home_Screen1(),
-      const Home_Screen1(),
-      const Home_Screen1(),
+      Home_Screen1(),
+      Home_Screen1(),
+      Home_Screen1(),
+      Home_Screen1(),
       const Center(
         child: Text("DP SHOPPING"),
       ),
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Home_Screen1(),
+                    builder: (context) => Home_Screen1(),
                   ),
                 );
               },
@@ -109,9 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: const Center(
-        
-      ),
+      body: const Center(),
     );
   }
 }

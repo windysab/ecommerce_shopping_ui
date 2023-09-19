@@ -1,13 +1,16 @@
 // import 'package:ecommerce_shopping_ui/presentation/home/widgets/list_product_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/search/search_bloc.dart';
+import '../presentation/home/search/search_page.dart';
 import '../presentation/home/widgets/banner_widget.dart';
 import '../presentation/home/widgets/list_category_widget.dart';
 import '../presentation/home/widgets/list_product_widget.dart';
 
 class Home_Screen1 extends StatelessWidget {
-  const Home_Screen1({super.key});
-
+  Home_Screen1({super.key});
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +31,6 @@ class Home_Screen1 extends StatelessWidget {
           backgroundColor: Colors.white,
           // lanjutkan kode nya
 
-          
           title: Row(
             children: [
               Material(
@@ -50,6 +52,17 @@ class Home_Screen1 extends StatelessWidget {
                     ],
                   ),
                   child: TextFormField(
+                    controller: searchController,
+                    onFieldSubmitted: (_) {
+                      // context.read<SearchBloc>().add(SearchEvent.search(_));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchPage(
+                              search: _,
+                            ),
+                          ));
+                    },
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       prefixIcon: Icon(Icons.search, color: Colors.pink),

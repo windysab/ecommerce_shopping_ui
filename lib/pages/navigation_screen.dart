@@ -20,7 +20,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   int PageIndex = 0;
 
   List<Widget> pages = [
-    const Home_Screen1(),
+    Home_Screen1(),
     const CartPage(),
     const ProfileScreen(),
     const SettingScreen(),
