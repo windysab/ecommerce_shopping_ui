@@ -31,17 +31,39 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: TextFormField(
-          controller: searchController,
-          onFieldSubmitted: (_) {
-            context.read<SearchBloc>().add(
-                  SearchEvent.search(_),
-                );
-          },
-          decoration: const InputDecoration(
-            hintText: 'Search',
-            border: InputBorder.none,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            color: Colors.pink,
           ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Container(
+                height: 42,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                child: Material(
+                  borderRadius: BorderRadius.circular(10),
+                  child: TextFormField(
+                    controller: searchController,
+                    onFieldSubmitted: (_) {
+                      context.read<SearchBloc>().add(
+                            SearchEvent.search(_),
+                          );
+                    },
+                    decoration: const InputDecoration(
+                      // filled: true,
+                      prefixIcon: Icon(Icons.search),
+                      contentPadding: EdgeInsets.symmetric(vertical: 0),
+                      hintText: 'Search',
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       body: BlocBuilder<SearchBloc, SearchState>(
