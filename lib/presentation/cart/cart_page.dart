@@ -1,3 +1,4 @@
+import 'package:ecommerce_shopping_ui/presentation/checkout/checkout_buy.dart';
 import 'package:ecommerce_shopping_ui/presentation/checkout/checkout_page.dart';
 import 'package:ecommerce_shopping_ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -169,7 +170,7 @@ class _CartPageState extends State<CartPage> {
                                           Navigator.push(context,
                                               MaterialPageRoute(
                                                   builder: (context) {
-                                            return const CheckoutPage();
+                                            return const CheckoutBuy();
                                           }));
                                         } else {
                                           // ignore: use_build_context_synchronously

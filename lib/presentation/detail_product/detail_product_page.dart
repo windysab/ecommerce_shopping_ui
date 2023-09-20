@@ -100,6 +100,13 @@ class _DetailProductPAgeState extends State<DetailProductPAge> {
                   children: [
                     IconButton(
                       onPressed: () {
+                        // if (widget.product.attributes!.quantity! > 0) {
+                        //   context.read<CheckoutBloc>().add(
+                        //         RemoveFromCartEvent(
+                        //           product: widget.product,
+                        //         ),
+                        //       );
+                        // }
                         context.read<CheckoutBloc>().add(
                               RemoveFromCartEvent(
                                 product: widget.product,
@@ -143,46 +150,47 @@ class _DetailProductPAgeState extends State<DetailProductPAge> {
                       icon: const Icon(Icons.add),
                     ),
                     ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.pink,
-                        ),
-                        onPressed: () {
-                          context.read<CheckoutBloc>().add(
-                                AddToCartEvent(
-                                  product: widget.product,
-                                ),
-                              );
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.pink,
+                      ),
+                      onPressed: () {
+                        context.read<CheckoutBloc>().add(
+                              AddToCartEvent(
+                                product: widget.product,
+                              ),
+                            );
+                      },
+                      child: BlocListener<CheckoutBloc, CheckoutState>(
+                        listener: (context, state) {
+                          if (state is CheckoutError) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Added to cart'),
+                              ),
+                            );
+                          }
+                          if (state is CheckoutLoaded) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CartPage(),
+                              ),
+                            );
+                          }
                         },
-                        child: BlocListener<CheckoutBloc, CheckoutState>(
-                          listener: (context, state) {
-                            if (state is CheckoutError) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Added to cart'),
-                                ),
-                              );
+                        child: BlocBuilder<CheckoutBloc, CheckoutState>(
+                          builder: (context, state) {
+                            if (state is CheckoutLoading) {
+                              return const CircularProgressIndicator();
                             }
-                            if (state is CheckoutLoaded) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const CartPage(),
-                                ),
-                              );
-                            }
+                            return const Text(
+                              'Beli Sekarang',
+                              style: TextStyle(color: Colors.white),
+                            );
                           },
-                          child: BlocBuilder<CheckoutBloc, CheckoutState>(
-                            builder: (context, state) {
-                              if (state is CheckoutLoading) {
-                                return const CircularProgressIndicator();
-                              }
-                              return const Text(
-                                'Beli Sekarang',
-                                style: TextStyle(color: Colors.white),
-                              );
-                            },
-                          ),
-                        ))
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
