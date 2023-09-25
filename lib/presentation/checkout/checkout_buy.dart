@@ -16,6 +16,7 @@ class CheckoutBuy extends StatefulWidget {
 
 class _CheckoutBuyState extends State<CheckoutBuy> {
   final addressController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +123,17 @@ class _CheckoutBuyState extends State<CheckoutBuy> {
               height: 8,
             ),
             // Text(
-            //   ' Total: Rp. ${state.items.fold(0, (sum, item) => sum + item.attributes!.price!)}',
+            //   // Define the state variable
+            //   final state = BlocProvider.of<CheckoutBloc>(context).state;
+
+            //   // Use the state variable within the code block
+            //   Text(
+            //     ' Total: Rp. ${state.items.fold(0, (sum, item) => sum + item.attributes!.price!)}',
+            //     style: const TextStyle(
+            //       fontWeight: FontWeight.bold,
+            //       fontSize: 16,
+            //     ),
+            //   ),
             //   style: const TextStyle(
             //     fontWeight: FontWeight.bold,
             //     fontSize: 16,
