@@ -7,7 +7,7 @@ import '../data/datasources/auth_local_datasource.dart';
 import '../presentation/auth/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -15,6 +15,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   User? user;
+
   @override
   void initState() {
     getUser();
@@ -46,82 +47,77 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 80,
-                height: 80,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        'https://img.a.transfermarkt.technology/portrait/big/85289-1541150488.jpg?lm=1'),
-                    fit: BoxFit.cover,
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 10),
+                const CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(
+                      'https://img.a.transfermarkt.technology/portrait/big/85289-1541150488.jpg?lm=1'),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                user != null ? user!.username : '',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 20),
+                Column(
+                  children: [
+                    // Text(
+                    //   'Edit Profile',
+                    //   style: TextStyle(
+                    //     fontSize: 20,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    // Icon(Icons.arrow_forward_ios),
+                    Text(
+                      user != null ? user!.username : '',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      user != null ? user!.email : '',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      '0853xxxxxxxx',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                user != null ? user!.email : '',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '0853xxxxxxxx',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              await AuthLocalDatasource().removeAuthData();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()));
-            },
-            child: const Text('Logout'),
-          ),
-          const Text(
-            'List Order',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              ],
             ),
-          ),
-          Expanded(
-            child: BlocBuilder<ListOrderBloc, ListOrderState>(
+            ElevatedButton(
+              onPressed: () async {
+                await AuthLocalDatasource().removeAuthData();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+              },
+              child: const Text('Logout'),
+            ),
+            const SizedBox(width: 20),
+            const Text(
+              'List Order',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            BlocBuilder<ListOrderBloc, ListOrderState>(
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () {
@@ -131,6 +127,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                   loaded: (data) {
                     return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: data.data!.length,
                       itemBuilder: (context, index) {
                         final order = data.data![index];
                         return Card(
@@ -142,30 +140,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         );
                       },
-                      itemCount: data.data!.length,
                     );
                   },
                 );
-                // if (state is ListOrderEvent) {
-                //   return const CircularProgressIndicator();
-                // } else if (state is ListOrderBloc) {
-                //   return ListView.builder(
-                //     shrinkWrap: true,
-                //     itemCount: state.listOrder.length,
-                //     itemBuilder: (context, index) {
-                //       return ListTile(
-                //         title: Text(state.listOrder[index].name),
-                //         subtitle: Text(state.listOrder[index].price.toString()),
-                //       );
-                //     },
-                //   );
-                // } else {
-                //   return const Text('Error');
-                // }
               },
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
