@@ -129,14 +129,38 @@ class _ProfilAcuantState extends State<ProfilAcuant> {
                                         '${order.attributes!.items!.first.productName}'),
                                     subtitle: Text(
                                         'Rp. ${order.attributes!.totalPrice}'),
-                                    trailing: Text(
-                                        '${order.attributes!.statusOrder}'),
+                                    trailing: Container(
+                                      alignment: Alignment.center,
+                                      height: 30,
+                                      width: 100,
+                                      margin: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.black,
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: order.attributes!.statusOrder ==
+                                                'pending'
+                                            ? Colors.red
+                                            : Colors.green,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            '${order.attributes!.statusOrder}',
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                      ),
+                                    ),
                                     onTap: () {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) {
-                                            return DetailOrder(order: order,);
+                                            return DetailOrder(
+                                              order: order,
+                                            );
                                           },
                                         ),
                                       );

@@ -27,8 +27,10 @@ class GlobalVariables {
   ];
 
   static const List<String> bannerImages = [
-    'https://storage.googleapis.com/astro-site/home/new-user.webp',
-    'https://storage.googleapis.com/astro-site/home/24jam.webp',
+    'https://s4.bukalapak.com/cinderella/ad-inventory/64f69c5793dc672ddf8f57ee/w-640/Home%20Banner%20Bukalapak%20Desktop%20%5B1668x704%5D-1693883477089.jpg.webp',
+    'https://s4.bukalapak.com/cinderella/ad-inventory/64eed8ba594b9081bfe6e440/w-640/Home%20Banner%20Bukalapak_Desktop%20%5B1668x704%5D-1693374647273.jpg.webp',
+    'https://s4.bukalapak.com/cinderella/ad-inventory/64f6cc3ed83c74ec29ad8126/w-640/DESK_Home_Banner_2018%20%5B1668x704%5D%20(1)-1693895740501.jpg.webp',
+    'https://s4.bukalapak.com/cinderella/ad-inventory/65102abce1858c49e113c444/w-640/Home%20Banner%20Bukalapak%20Desktop%20%5B1668x704%5D%20(4)-1695558328296.jpg.webp',
   ];
 
   static const backgroundColor = Colors.white;
