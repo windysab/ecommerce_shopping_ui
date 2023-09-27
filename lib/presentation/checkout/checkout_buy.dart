@@ -90,6 +90,10 @@ class _CheckoutBuyState extends State<CheckoutBuy> {
                                 ).format(
                                   dataSet.elementAt(index).attributes!.price!,
                                 )} x $count',
+                                style: const TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
                               ),
 
                               // 'Rp. ${dataSet.elementAt(index).attributes!.price!} x $count',
