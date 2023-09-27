@@ -1,7 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:ecommerce_shopping_ui/pages/cart_screen.dart';
 import 'package:ecommerce_shopping_ui/pages/profil_acuant.dart';
-import 'package:ecommerce_shopping_ui/pages/profil_screen.dart';
+
 import 'package:ecommerce_shopping_ui/pages/setting_screen.dart';
 import 'package:ecommerce_shopping_ui/screens/home_screen.dart';
 import 'package:ecommerce_shopping_ui/screens/home_screen1.dart';
