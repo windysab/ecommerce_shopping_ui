@@ -3,6 +3,7 @@ import 'package:ecommerce_shopping_ui/presentation/checkout/checkout_page.dart';
 import 'package:ecommerce_shopping_ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../bloc/checkout/checkout_bloc.dart';
 import '../../data/datasources/auth_local_datasource.dart';
@@ -109,9 +110,17 @@ class _CartPageState extends State<CartPage> {
                               ),
                               title: Text(
                                   dataSet.elementAt(index).attributes!.name!),
-                              subtitle:
-                                  Text('Harga: Rp. ${item.attributes!.price!}'),
-                              trailing: Text('Jumlah: $count'),
+                              subtitle: Text(
+                                NumberFormat.currency(
+                                  locale: 'id',
+                                  symbol: 'Rp. ',
+                                  decimalDigits: 0,
+                                ).format(item.attributes!.price!),
+                              ),
+                              trailing: Text(
+                                NumberFormat('#,##0', 'id').format(
+                                    count.toDouble() * item.attributes!.price!),
+                              ),
                               onTap: () {
                                 showDialog(
                                   context: context,
@@ -154,7 +163,15 @@ class _CartPageState extends State<CartPage> {
                               : Column(
                                   children: [
                                     Text(
-                                      'Total: Rp. ${state.items.fold(0, (sum, item) => sum + item.attributes!.price!)}',
+                                      NumberFormat.currency(
+                                        locale: 'id',
+                                        symbol: 'Rp. ',
+                                        decimalDigits: 0,
+                                      ).format(state.items.fold(
+                                          0,
+                                          (sum, item) =>
+                                              sum + item.attributes!.price!)),
+                                      // 'Total: Rp. ${state.items.fold(0, (sum, item) => sum + item.attributes!.price!)}',
                                       style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 20,

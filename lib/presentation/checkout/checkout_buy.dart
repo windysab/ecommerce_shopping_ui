@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../bloc/checkout/checkout_bloc.dart';
 import '../../bloc/order/order_bloc.dart';
@@ -80,13 +81,34 @@ class _CheckoutBuyState extends State<CheckoutBuy> {
                                   dataSet.elementAt(index).attributes!.name!,
                                   style: const TextStyle(fontSize: 12)),
                               subtitle: Text(
-                                'Rp ${dataSet.elementAt(index).attributes!.price!} x $count',
+                                '${NumberFormat.currency(
+                                  locale: 'id',
+                                  symbol: 'Rp. ',
+                                  decimalDigits: 0,
+                                  // customPattern: '#,##0.00',
+                                  //name: 'Rp. ',
+                                ).format(
+                                  dataSet.elementAt(index).attributes!.price!,
+                                )} x $count',
                               ),
+
+                              // 'Rp. ${dataSet.elementAt(index).attributes!.price!} x $count',
+
                               trailing: Text(
-                                'Total : ${dataSet.elementAt(index).attributes!.price! * count}',
+                                NumberFormat.currency(
+                                  locale: 'id',
+                                  symbol: 'Rp. ',
+                                  decimalDigits: 0,
+                                  // customPattern: '#,##0.00',
+                                  //name: 'Rp. ',
+                                ).format(
+                                  dataSet.elementAt(index).attributes!.price! *
+                                      count,
+                                ),
+                                // 'Total : ${dataSet.elementAt(index).attributes!.price! * count}',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  fontSize: 12,
                                 ),
                               ),
                             ),

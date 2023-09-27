@@ -64,8 +64,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       globalBackgroundColor: Colors.white,
       pages: [
         PageViewModel(
-          title: "Menggunakan Profesional atau Freelancer",
-          body: "Lorem ipsum dolor sit amet. Sed quam sit elit rhoncus.",
+          title: "Belanja Online Lebih Mudah",
+          body: "Electro menyediakan berbagai macam produk elektronik.",
           image: Image.asset(
             "assets/images/splash1.png",
             width: 180.0,
@@ -75,8 +75,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Tempat di Mana Pekerjaan Menemukan Anda",
-          body: "Lorem ipsum dolor sit amet. Sed quam sit elit rhoncus.",
+          title: "Tempat di Mana Saja Anda Bisa Berbelanja dengan Nyaman",
+          body: "Mudah dan cepat, hanya dengan beberapa klik.",
           image: Image.asset(
             "assets/images/splash2.png",
             width: 180.0,
@@ -85,8 +85,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
         ),
         PageViewModel(
-          title: "Mari Memulai Karier Anda Bersama Kami!",
-          body: "Lorem ipsum dolor sit amet. Sed quam sit elit rhoncus.",
+          title: "Mari Memulai Belanja Online",
+          
+          body:
+              "Dapatkan berbagai macam produk elektronik dengan harga terbaik.",
           image: Image.asset(
             "assets/images/splash3.png",
             width: 180.0,

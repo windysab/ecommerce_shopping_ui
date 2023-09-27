@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ecommerce_shopping_ui/data/models/respons/list_product_response_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../bloc/checkout/checkout_bloc.dart';
 import '../../bloc/checkout/checkout_bloc.dart';
@@ -63,7 +64,16 @@ class _DetailProductPAgeState extends State<DetailProductPAge> {
                   ),
                 ),
                 Text(
-                  'Rp. ${widget.product.attributes!.price!}',
+                  // NumberFormat(
+                  //   '  ###,###,###',
+                  //   'id',
+                  // ).format(widget.product.attributes!.price!),
+                  NumberFormat.currency(
+                    locale: 'id',
+                    symbol: 'Rp. ',
+                    decimalDigits: 0,
+                  ).format(widget.product.attributes!.price!),
+                  //'Rp. ${widget.product.attributes!.price!}',
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../bloc/checkout/checkout_bloc.dart';
 import '../../../bloc/get_products/get_products_bloc.dart';
@@ -108,7 +109,12 @@ class _ListProductWidgetState extends State<ListProductWidget> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Text(
-                            'Rp.${product.attributes!.price.toString()}',
+                            NumberFormat.currency(
+                              locale: 'id',
+                              symbol: 'Rp. ',
+                              decimalDigits: 0,
+                            ).format(product.attributes!.price!),
+                            // 'Rp.${product.attributes!.price.toString()}',
                             textAlign: TextAlign.right,
                             style: const TextStyle(
                               fontSize: 14,

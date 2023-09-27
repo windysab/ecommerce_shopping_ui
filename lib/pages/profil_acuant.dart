@@ -105,75 +105,73 @@ class _ProfilAcuantState extends State<ProfilAcuant> {
               //   ),
               // ),
               // const SizedBox(height: 5),
-              SingleChildScrollView(
-                child: Column(children: [
-                  BlocBuilder<ListOrderBloc, ListOrderState>(
-                      builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () => const SizedBox(),
-                      loading: () => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      loaded: (data) {
-                        return Card(
-                            elevation: 10,
-                            color: Colors.grey[200],
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: data.data!.length,
-                              itemBuilder: (context, index) {
-                                final order = data.data![index];
-                                return Card(
-                                  child: ListTile(
-                                    title: Text(
-                                        '${order.attributes!.items!.first.productName}'),
-                                    subtitle: Text(
-                                        'Rp. ${order.attributes!.totalPrice}'),
-                                    trailing: Container(
-                                      alignment: Alignment.center,
-                                      height: 30,
-                                      width: 100,
-                                      margin: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: order.attributes!.statusOrder ==
-                                                'pending'
-                                            ? Colors.red
-                                            : Colors.green,
+              Column(children: [
+                BlocBuilder<ListOrderBloc, ListOrderState>(
+                    builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () => const SizedBox(),
+                    loading: () => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    loaded: (data) {
+                      return Card(
+                          elevation: 10,
+                          color: Colors.grey[200],
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: data.data!.length,
+                            itemBuilder: (context, index) {
+                              final order = data.data![index];
+                              return Card(
+                                child: ListTile(
+                                  title: Text(
+                                      '${order.attributes!.items!.first.productName}'),
+                                  subtitle: Text(
+                                      'Rp. ${order.attributes!.totalPrice}'),
+                                  trailing: Container(
+                                    alignment: Alignment.center,
+                                    height: 30,
+                                    width: 100,
+                                    margin: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.black,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                            '${order.attributes!.statusOrder}',
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10)),
-                                      ),
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: order.attributes!.statusOrder ==
+                                              'pending'
+                                          ? Colors.red
+                                          : Colors.green,
                                     ),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return DetailOrder(
-                                              order: order,
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          '${order.attributes!.statusOrder}',
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 10)),
+                                    ),
                                   ),
-                                );
-                              },
-                            ));
-                      },
-                    );
-                  })
-                ]),
-              ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return DetailOrder(
+                                            order: order,
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          ));
+                    },
+                  );
+                })
+              ]),
             ],
           )),
     );
